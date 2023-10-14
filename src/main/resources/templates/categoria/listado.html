@@ -16,8 +16,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="categoria:${categoria}">
-                    <td>[[${categoria.id_categoria}]]</td>
+                <tr th:each="categoria : ${categorias}">
+                    <td>[[${categoria.idCategorias}]]</td>
                     <td>[[${categoria.descripcion}]]</td>
                 </tr>
             </tbody>
