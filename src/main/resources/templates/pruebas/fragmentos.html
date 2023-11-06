@@ -23,6 +23,24 @@
                     </li>                    
                 </ul>
             </div>
-        </section>
-    </body>
+        </section> 
+        
+        <section th:fragment="categoriasUpdate" id="categorias">
+            <div class="row py-4">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" 
+                           aria-current="page" 
+                           href="/pruebas/modifica"
+                           >[[#{pruebas.todas}]]</a>
+                    </li>
+                    <li th:each="categoria : ${categorias}" class="nav-item">
+                        <a class="nav-link" 
+                           th:href="@{/pruebas/modifica/}+${categoria.idCategoria}"
+                           >[[${categoria.descripcion}]]</a>
+                    </li>                    
+                </ul>
+            </div>
+        </section> 
+   </body>
 </html>

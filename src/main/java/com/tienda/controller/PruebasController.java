@@ -36,14 +36,13 @@ public class PruebasController {
         return "/pruebas/listado";
     }
 
-    @GetMapping("/listado/{idCategoria}")
-    public String listado(Model model, Categoria categoria) {
-        var productos = categoriaService.getCategoria(categoria).getProductos();
-        var categorias = categoriaService.getCategorias(false);
-        model.addAttribute("productos", productos);
-        model.addAttribute("totalProductos", productos.size());
-        model.addAttribute("categorias", categorias);
-        return "/pruebas/listado";
+    @GetMapping("/modificar/{idCategoria}")
+    public String productoModificar(Categoria categoria, Model model) {
+        
+        categoria = categoriaService.getCategoria(categoria);
+        model.addAttribute("categoria", categoria);
+        
+        return "/pruebas/modifica";
     }
     
 }
