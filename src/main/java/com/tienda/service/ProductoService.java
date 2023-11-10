@@ -17,4 +17,6 @@ public interface ProductoService {
     // Se elimina el producto que tiene el id pasado por parÃ¡metro
     public void delete(Producto producto);
     
+    // Lista de productros utilizando un metodo Query
+    public List<Producto> consultaQuery(double precioInf, double precioSup);
 }

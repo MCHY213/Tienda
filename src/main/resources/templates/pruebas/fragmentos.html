@@ -24,5 +24,59 @@
                 </ul>
             </div>
         </section>
-   </body>
+
+        <!-- 2 Sección principal para mostrar la informaccion de los productos seleccionados -->
+        <section th:fragment="listadoProductos">
+            <div class="row row-cols-4">
+                <div class="card p-3"  th:each="p : ${productos}">
+                    <figure>
+                        <img th:src="${p.rutaImagen}" 
+                             class="card-img-top"
+                             height="300"
+                             alt="..."/>
+                        <figcaption>
+                            $ [[${p.precio}+' ('+${p.existencias}+')']]
+                        </figcaption>
+                    </figure>
+                    <div class="card-header">
+                        [[${p.descripcion}]]
+                    </div>
+                    <div class="card-body">
+                        <p>[[${p.detalle}]]</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3 Sección para mostrar los filtros a desarrollar -->
+        <section th:fragment="filtros">
+            <div class="row p-3">
+                <div class="col-md-3">
+                    <form method="post"
+                          th:action='@{/pruebas/query1}'>
+                        <div class='card'>
+                            <div class="card-header" style="text-align: center">
+                                [[#{pruebas.ampliadas}]]
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="precioInf">[[#{pruebas.precio.inferior}]]</label>
+                                    <input type="number" class="form-control" name="precioInf" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="precioSup">[[#{pruebas.precio.superior}]]</label>
+                                    <input type="number" class="form-control" name="precioSup" required="true"/>
+                                </div>
+                            </div>
+                            <div class="card-footer" style="text-align: center">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-check"></i> [[#{pruebas.ampliadas}]]
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </body>
 </html>
