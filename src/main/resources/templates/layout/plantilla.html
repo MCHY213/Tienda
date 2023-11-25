@@ -13,6 +13,7 @@
     </head>
     <body>
         <header th:fragment="header" class="header">
+
             <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
                 <div class="container">
                     <a th:href="@{/}" class="navbar-brand">[[#{aplicacion.titulo}]]</a>
@@ -35,7 +36,7 @@
                                     <li><a class="dropdown-item"  th:href="@{/usuario/listado}">[[#{plantilla.usuarios}]]</a></li>
                                 </ul>
                             </li>
-                            
+
                         </ul>
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
@@ -80,7 +81,7 @@
                 </div>
             </section>
         </header>
-        
+
         <footer th:fragment="footer" class="bg-info mt-5 p-2">
             <div class="container">
                 <div class="col">
