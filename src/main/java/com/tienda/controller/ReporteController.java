@@ -73,7 +73,7 @@ public class ReporteController {
             @RequestParam String tipo) throws IOException {
         //Esto espara definir los parÃ metros que se pasan al reporte cliente
         Map<String, Object> parametros = new HashMap();
-        parametros.put("fechaInicio", fechaInicio);
+        parametros.put("fechaIni", fechaInicio);
         parametros.put("fechaFin", fechaFin);
         var reporte="ventasTotales";
         return reporteService.generaReporte(reporte, parametros, tipo);
