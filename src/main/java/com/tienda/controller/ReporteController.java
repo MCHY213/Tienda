@@ -26,16 +26,27 @@ public class ReporteController {
         Calendar fecha=Calendar.getInstance();
         String fechaIni=""+(fecha.get(Calendar.YEAR)-1)+"-01-01";
         
+        // Productos
+        String FechaI=""+(fecha.get(Calendar.YEAR)-1)+"-01-01";
+        
         String strMes=(fecha.get(Calendar.MONTH)<10?"0":"")+
                 fecha.get(Calendar.MONTH);
         String strDia=(fecha.get(Calendar.DAY_OF_MONTH)<10?"0":"")+
                 fecha.get(Calendar.DAY_OF_MONTH);
         String fechaFin=""+fecha.get(Calendar.YEAR)+"-"+strMes+"-"+strDia;
         
-        model.addAttribute("fechaInicio", fechaIni);
+        String FechaF=""+fecha.get(Calendar.YEAR)+"-"+strMes+"-"+strDia;
+        
+        model.addAttribute("fechaIni", fechaIni);
         model.addAttribute("fechaFin", fechaFin);
+        
+        // Productos
+        model.addAttribute("FechaI", FechaI);
+        model.addAttribute("FechaF", FechaF);
         return "/reportes/principal";
     }
+    
+    
 
     @GetMapping("/usuarios")
     public ResponseEntity<Resource> reporteClientes(@RequestParam String tipo) 
@@ -52,17 +63,25 @@ public class ReporteController {
         return reporteService.generaReporte(reporte, null, tipo);
     }
     
+    // Productos
     @GetMapping("/productos")
-    public ResponseEntity<Resource> reporteProductos(@RequestParam String tipo) 
-            throws IOException {
+    public ResponseEntity<Resource> reporteProductos(
+            @RequestParam String FechaI,
+            @RequestParam String FechaF,
+            @RequestParam String tipo) throws IOException {
+        //Esto espara definir los parÃ metros que se pasan al reporte cliente
+        Map<String, Object> parametros = new HashMap();
+        parametros.put("FechaI", FechaI);
+        parametros.put("FechaF", FechaF);
         var reporte="productos";
-        return reporteService.generaReporte(reporte, null, tipo);
+        return reporteService.generaReporte(reporte, parametros, tipo);
     }
     
+    // Categorias
     @GetMapping("/categorias")
-    public ResponseEntity<Resource> reporteCategorias(@RequestParam String tipo) 
-            throws IOException {
-        var reporte="categorias";
+    public ResponseEntity<Resource> reportecategorias(@RequestParam String tipo) 
+            throws IOException {        
+        var reporte = "categorias";
         return reporteService.generaReporte(reporte, null, tipo);
     }
 
